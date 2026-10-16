@@ -15,11 +15,11 @@ export type Phase = {
 };
 
 export const PHASES: Phase[] = [
-  { title: "Workshop 1", start: "2026-10-06", status: "complete" },
-  { title: "Workshop 2" },
-  { title: "Workshop 3" },
-  { title: "Initial Round" },
-  { title: "Final Hackathon" },
+  { title: "Workshop 1", summary: "Online", start: "2026-10-06", status: "complete" },
+  { title: "Workshop 2", summary: "Online", start: "2026-10-11", status: "complete" },
+  { title: "Workshop 3", summary: "Online", start: "2026-10-19" },
+  { title: "Initial Round", summary: "Online", start: "2026-10-24" },
+  { title: "Final Hackathon", summary: "Online / Physical", start: "2026-10-29" },
 ];
 
 const MONTHS = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
