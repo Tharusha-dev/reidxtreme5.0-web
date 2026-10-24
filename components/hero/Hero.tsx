@@ -9,6 +9,7 @@ import { ScrollCue } from "./ScrollCue";
 import { SoundToggle } from "./SoundToggle";
 import { STAGE, STILL_CUES, VIDEO_CUES } from "./stages";
 import { readMotionPreference, useMotionPreference } from "@/hooks/useMotionPreference";
+import { REGISTRATIONS_OPEN } from "@/lib/registration";
 
 // Give up on the video and show the still if it hasn't started by then.
 const START_TIMEOUT_MS = 3000;
@@ -114,7 +115,7 @@ export function Hero() {
             href="/register"
             className="btn-primary inline-flex h-auto min-h-12 items-center justify-center px-8 text-[clamp(0.68rem,3vw,0.8rem)] font-bold tracking-[0.06em] shadow-[0_0_15px_rgb(140_245_189/0.25)] transition-[box-shadow,transform] duration-300 hover:-translate-y-[2px] hover:shadow-[0_0_25px_rgb(140_245_189/0.4)]"
           >
-            REGISTER NOW
+            {REGISTRATIONS_OPEN ? "REGISTER NOW" : "REGISTRATIONS CLOSED"}
           </Link>
         </motion.div>
       </section>

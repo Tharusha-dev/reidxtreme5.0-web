@@ -20,7 +20,7 @@ const FAQS = [
   },
   {
     question: "How can I register for ReidXtreme 5.0?",
-    answer: "You can register your team through the registration section of this website.",
+    answer: "Registrations for ReidXtreme 5.0 are now closed. Registered teams will receive all further updates by email and through the official WhatsApp groups.",
   },
   {
     question: "How are teams selected for the final round?",

@@ -10,6 +10,7 @@ import {
   type SubmitEvent,
 } from "react";
 import { AnimatePresence, MotionConfig, motion } from "motion/react";
+import Link from "next/link";
 import CustomSelect from "@/components/CustomSelect";
 import RegistrationDialog, { type RegistrationResult } from "@/components/RegistrationDialog";
 import { TransitionOverlay } from "@/components/TransitionOverlay";
@@ -29,7 +30,7 @@ import {
 import { clearDraft, loadDraft, saveDraft } from "@/lib/registrationDraft";
 
 type RegistrationFormProps = {
-  // When false, the form is shown greyed out behind a "coming soon" overlay.
+  // When false, the form is shown greyed out behind a "registrations closed" overlay.
   isOpen: boolean;
 };
 
@@ -465,11 +466,28 @@ function RegistrationLayout({ headingId, isOpen, aside, panel }: RegistrationLay
             className="m-0 font-display text-[clamp(2.75rem,6vw,5rem)] leading-[0.95] font-bold tracking-[0.025em] text-balance text-white uppercase"
             id={headingId}
           >
-            Register <span className="text-mint text-glow">now!</span>
+            {isOpen ? (
+              <>
+                Register <span className="text-mint text-glow">now!</span>
+              </>
+            ) : (
+              <>
+                Registrations <span className="text-mint text-glow">closed</span>
+              </>
+            )}
           </h2>
           <p className="m-0 text-[clamp(0.875rem,1.5vw,1rem)] leading-relaxed text-muted">
-            Teams of up to {MAX_TEAM_SIZE}, leader included. Have everyone&apos;s email,
-            registration and WhatsApp numbers ready. It takes about five minutes.
+            {isOpen ? (
+              <>
+                Teams of up to {MAX_TEAM_SIZE}, leader included. Have everyone&apos;s email,
+                registration and WhatsApp numbers ready. It takes about five minutes.
+              </>
+            ) : (
+              <>
+                The bridge is set and every team is on the path. Thank you to everyone who
+                registered for ReidXtreme 5.0.
+              </>
+            )}
           </p>
           <div
             className={cx(
@@ -492,11 +510,19 @@ function RegistrationLayout({ headingId, isOpen, aside, panel }: RegistrationLay
                 strokeWidth="1.6"
               />
             </svg>
-            <p className="m-0">
-              <span className="font-semibold text-mint">Please note:</span> Only{" "}
-              <span className="font-medium text-white">UCSC</span> (University of Colombo School of
-              Computing) undergraduates are eligible to participate.
-            </p>
+            {isOpen ? (
+              <p className="m-0">
+                <span className="font-semibold text-mint">Please note:</span> Only{" "}
+                <span className="font-medium text-white">UCSC</span> (University of Colombo School
+                of Computing) undergraduates are eligible to participate.
+              </p>
+            ) : (
+              <p className="m-0">
+                <span className="font-semibold text-mint">Already registered?</span> Watch the
+                official Team Leaders&rsquo; WhatsApp group and your inbox for Initial Round
+                instructions.
+              </p>
+            )}
           </div>
         </header>
         {isOpen && aside}
@@ -505,16 +531,30 @@ function RegistrationLayout({ headingId, isOpen, aside, panel }: RegistrationLay
       <div className="relative mx-auto w-full max-w-[34rem] min-w-0 rounded-lg border border-line bg-panel shadow-[0_20px_55px_rgb(0_0_0/0.3),inset_0_1px_rgb(245_250_247/0.035)] backdrop-blur-md lg:mx-0">
         {!isOpen && (
           <div className="absolute inset-0 z-10 flex flex-col items-center justify-center rounded-lg bg-bg/40 backdrop-blur-[3px]">
-            <div className="mx-4 flex flex-col items-center justify-center rounded-xl border border-mint/30 bg-panel/90 p-8 text-center shadow-[0_0_40px_rgb(140_245_189/0.15)] backdrop-blur-md">
-              <h3 className="font-display text-xl font-bold tracking-[0.1em] text-white md:text-2xl">
+            <div className="relative mx-4 flex flex-col items-center justify-center rounded-xl border border-mint/30 bg-panel/90 p-8 text-center shadow-[0_0_40px_rgb(140_245_189/0.15)] backdrop-blur-md">
+              {/* Corner ticks, echoing the registration dialog. */}
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-2 rounded-lg border border-dashed border-mint/12"
+              />
+              <p className="text-[0.68rem] font-semibold tracking-[0.16em] text-mint uppercase">
+                Path sealed
+              </p>
+              <h3 className="mt-2 font-display text-xl font-bold tracking-[0.1em] text-white md:text-2xl">
                 REGISTRATIONS
               </h3>
               <p className="mt-1 font-display text-2xl font-bold tracking-[0.05em] text-mint text-glow md:text-3xl">
-                COMING SOON
+                CLOSED
               </p>
-              <p className="mt-4 text-sm leading-relaxed text-muted">
-                Assemble your team. The chasm opens shortly.
+              <p className="mt-4 max-w-[22rem] text-sm leading-relaxed text-muted">
+                The bridge has been raised. Follow the timeline as the competition unfolds.
               </p>
+              <Link
+                className="btn-primary mt-6 h-auto min-h-11 px-6 text-[0.75rem] tracking-[0.06em]"
+                href="/#timeline"
+              >
+                View the timeline
+              </Link>
             </div>
           </div>
         )}

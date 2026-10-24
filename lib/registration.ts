@@ -1,5 +1,9 @@
 // Shared by the registration form and the /api/register route handler.
 
+// Registrations closed on 2026-10-24. Flipping this back to true reopens the
+// form, the API and every "Register" call to action across the site.
+export const REGISTRATIONS_OPEN = false;
+
 export const MIN_TEAM_SIZE = 2;
 export const MAX_TEAM_SIZE = 3;
 

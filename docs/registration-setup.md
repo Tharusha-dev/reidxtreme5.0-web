@@ -87,13 +87,14 @@ Add these to `.env.local` for local development and to your hosting provider
 GOOGLE_SCRIPT_URL=https://script.google.com/macros/s/XXXXXXXX/exec
 # Must exactly match the SECRET script property from step 2
 GOOGLE_SCRIPT_SECRET=paste-the-openssl-output-here
-# "true" opens the form and the API. Anything else shows "Coming soon" and rejects submissions.
-REGISTRATIONS_OPEN=true
 ```
 
-All three are server-only (no `NEXT_PUBLIC_` prefix). `/register` is a static page,
-so after changing `REGISTRATIONS_OPEN` you have to **redeploy** (or restart
-`next dev`) for the overlay to change.
+Both are server-only (no `NEXT_PUBLIC_` prefix).
+
+Whether registrations are open is set in code, not the environment: flip
+`REGISTRATIONS_OPEN` in `lib/registration.ts` and redeploy. When it is `false`,
+the form shows a "Registrations closed" overlay, the site's "Register" buttons
+say so instead, and `/api/register` rejects submissions.
 
 ## 5. Test it
 

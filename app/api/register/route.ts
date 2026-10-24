@@ -1,9 +1,9 @@
-import { parseSubmission } from "@/lib/registration";
+import { REGISTRATIONS_OPEN, parseSubmission } from "@/lib/registration";
 
 // Forwards validated registrations to the Google Apps Script web app that
 // writes them to the registrations sheet (see scripts/registration-sheet.gs).
 export async function POST(request: Request) {
-  if (process.env.REGISTRATIONS_OPEN !== "true") {
+  if (!REGISTRATIONS_OPEN) {
     return Response.json({ ok: false, error: "Registrations are closed." }, { status: 403 });
   }
 

@@ -10,6 +10,7 @@ import {
   useScroll,
 } from "motion/react";
 import { REID_LOGO } from "@/components/brand";
+import { REGISTRATIONS_OPEN } from "@/lib/registration";
 
 const LINKS = [
   { id: "about", label: "About" },
@@ -18,7 +19,10 @@ const LINKS = [
   { id: "contact", label: "Contact" },
   { id: "faq", label: "FAQ" },
 ];
-const REGISTER = { href: "/register", label: "Connect & Register" };
+const REGISTER = {
+  href: "/register",
+  label: REGISTRATIONS_OPEN ? "Connect & Register" : "Registrations Closed",
+};
 const SECTION_IDS = LINKS.map((link) => link.id);
 
 /** The linked section crossing the middle of the viewport, if any (§17). */
